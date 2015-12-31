@@ -1,6 +1,6 @@
 {
   "name": "cache-walk",
-  "description": "Walk a require tree in the cache",
+  "description": "Walk a require tree for a cached module",
   "version": "1.0.0",
   "main": "lib/cache-walk.js",
   "scripts": {

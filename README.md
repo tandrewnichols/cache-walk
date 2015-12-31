@@ -2,7 +2,7 @@
 
 # cache-walk
 
-Walk a require tree in the cache
+Walk a require tree for a cached module.
 
 ## Installation
 
@@ -10,11 +10,37 @@ Walk a require tree in the cache
 
 ## Summary
 
+Requiring one file typically adds more than one file to the require cache, since that file (probably) requires other files, which potentially require other files. This module let's you walk through the entire require tree of a particular module as it is in the cache.
+
 ## Usage
 
+`cache-walk` exports two functions for interacting with a require tree, `.get` and `.walk`. `.get` returns a list of module ids (absolute file paths) while `.walk` calls a function for each module encountered.
 
+#### .get
 
-### Example
+```js
+var foo = require('./foo');
+var cache = require('cache-walk');
+
+// requiredModules will contain ./foo
+// plus everything required by ./foo and it's children
+var requiredModules = cache.get('./foo');
+```
+
+#### .walk
+
+```js
+var foo = require('./foo');
+var cache = require('cache-walk');
+
+// The callback will be called first with the ./foo module id
+// and then with everything required by ./foo and it's children
+cache.walk('./foo', function(mod) {
+  console.log(mod);
+});
+```
+
+These examples use relative paths, but absolute ones work as well.
 
 ## Contributing
 
