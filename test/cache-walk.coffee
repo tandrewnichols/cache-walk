@@ -44,3 +44,33 @@ describe 'cache-walk', ->
       Given -> require('./fixtures/foo')
       When -> @subject.walk(__dirname + '/fixtures/foo', @collector)
       Then -> @files.should.eql [@foo, @bar, @quux, @hello, @world]
+
+  describe '.delete', ->
+    context 'nothing in cache', ->
+      When -> @subject.delete('./fixtures/foo')
+      Then ->
+        (@foo of require.cache).should.be.false()
+        (@bar of require.cache).should.be.false()
+        (@quux of require.cache).should.be.false()
+        (@hello of require.cache).should.be.false()
+        (@world of require.cache).should.be.false()
+      
+    context 'with a relative path', ->
+      Given -> require('./fixtures/foo')
+      When -> @subject.delete('./fixtures/foo')
+      Then ->
+        (@foo of require.cache).should.be.false()
+        (@bar of require.cache).should.be.false()
+        (@quux of require.cache).should.be.false()
+        (@hello of require.cache).should.be.false()
+        (@world of require.cache).should.be.false()
+
+    context 'with an absolute path', ->
+      Given -> require('./fixtures/foo')
+      When -> @subject.delete(__dirname + '/fixtures/foo')
+      Then ->
+        (@foo of require.cache).should.be.false()
+        (@bar of require.cache).should.be.false()
+        (@quux of require.cache).should.be.false()
+        (@hello of require.cache).should.be.false()
+        (@world of require.cache).should.be.false()
