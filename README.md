@@ -14,7 +14,7 @@ Requiring one file typically adds more than one file to the require cache, since
 
 ## Usage
 
-`cache-walk` exports two functions for interacting with a require tree, `.get` and `.walk`. `.get` returns a list of module ids (absolute file paths) while `.walk` calls a function for each module encountered.
+`cache-walk` exports three functions for interacting with a require tree: `.get`, `.walk`, and `.delete`. `.get` returns a list of module ids (absolute file paths), `.walk` calls a function for each module encountered, and `.delete` deletes an entire require tree from the cache.
 
 #### .get
 
@@ -38,6 +38,16 @@ var cache = require('cache-walk');
 cache.walk('./foo', function(mod) {
   console.log(mod);
 });
+```
+
+#### .delete
+
+```js
+var foo = require('./foo');
+var cache = require('cache-walk');
+
+// Delete ./foo from the cache along with it's children etc.
+cache.delete('./foo');
 ```
 
 These examples use relative paths, but absolute ones work as well.
