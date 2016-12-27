@@ -1,0 +1,18 @@
+{
+  "env": {
+    "node": true,
+    "mocha": true,
+    "es6": true
+  },
+  "rules": {
+    "strict": "off",
+    "quotes": ["error", "single", {"avoidEscape": true, "allowTemplateLiterals": true}],
+    "no-undef": "error",
+    "no-unused-vars": ["error", {"args": "none"}],
+    "no-trailing-spaces": "error",
+    "no-loop-func": "error",
+    "no-underscore-dangle": "off",
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "no-octal": "off"
+  }
+}
