@@ -96,7 +96,6 @@
       "after": true
     }],
     "no-const-assign": "error",
-    "no-var": "error",
     "prefer-template": "error"
   }
 }
